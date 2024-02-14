@@ -35,7 +35,10 @@ namespace Canyon.Login.Sockets.Login.Packets
                 return;
             }
 #else
-            response = new();
+            response = new()
+            {
+                Success = true
+            };
             GameAccount gameAccount = AccountRepository.GetByUsername(Username);
             if (gameAccount != null)
             {

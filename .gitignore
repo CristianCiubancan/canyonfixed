@@ -398,3 +398,8 @@ FodyWeavers.xsd
 *.sln.iml
 /src/Canyon.Identity.Service/rsakey.json
 /src/Canyon.Identity.Service/keys/
+
+/sql/data
+
+ini
+map

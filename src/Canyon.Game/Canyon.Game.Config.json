@@ -2,14 +2,14 @@
 	"Database": {
 		"Hostname": "localhost",
 		"Username": "root",
-		"Password": "1234",
-		"Schema": "cq6135",
+		"Password": "password",
+		"Schema": "cq",
 		"Port": 3306
-	},
+	  },
 	"Realm": {
 		"ServerId": "94390aa0-c75d-11ed-9586-0050560401e2",
-		"Name": "Comet",
-		"IPAddress": "0.0.0.0",
+		"Name": "Dark",
+		"IPAddress": "127.0.0.1",
 		"Port": 5816,
 		"MaxOnlinePlayers": 1500,
 		"Username": "yD3Ni6tMW1NNU1QH",

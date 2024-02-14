@@ -1,6 +1,6 @@
 ﻿{
   "RealmID": "94390aa0-c75d-11ed-9586-0050560401e2",
-  "RealmName": "Comet",
+  "RealmName": "Dark",
   "Socket": {
     "Address": "127.0.0.1",
     "Port": 4360,
@@ -18,15 +18,15 @@
   "Web": {
     "Ping": "http://localhost:8082/Login"
   },
-  "MySQLDumpPath": "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe",
+  "MySQLDumpPath": "../../dumps",
   "Database": {
     "Hostname": "localhost",
     "Username": "root",
-    "Password": "1234",
-    "Schema": "cq6135",
+    "Password": "password",
+    "Schema": "cq",
     "Port": 3306
   },
   "Folders": {
-    "GameServer": "D:\\src\\Canyon\\canyon\\src\\Bin\\net7.0"
+    "GameServer": "../../src/Bin/net7.0/"
   }
 }

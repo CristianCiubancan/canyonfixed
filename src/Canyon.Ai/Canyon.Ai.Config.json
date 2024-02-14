@@ -2,8 +2,8 @@
   "Database": {
     "Hostname": "localhost",
     "Username": "root",
-    "Password": "1234",
-    "Schema": "cq6135",
+    "Password": "password",
+    "Schema": "cq",
     "Port": 3306
   },
   "Ai": {
