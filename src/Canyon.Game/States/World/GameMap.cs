@@ -521,6 +521,8 @@ namespace Canyon.Game.States.World
             }
 
             Passway passway = passways.FirstOrDefault(x => x.Index == idxPassage);
+            logger.LogDebug($"Passway [{idxPassage}]");
+            logger.LogDebug($"Passway [{passway.Index}] [{passway.TargetMap}] [{passway.TargetX}] [{passway.TargetY}]");
             idMap = passway.TargetMap;
             target = new Point(passway.TargetX, passway.TargetY);
 
@@ -561,6 +563,7 @@ namespace Canyon.Game.States.World
             }
 
             Passway passway = passways.FirstOrDefault(x => x.Index == idxPassage);
+            logger.LogDebug($"Passway [{idxPassage}] [{passway.Index}] [{passway.TargetMap}] [{passway.TargetX}] [{passway.TargetY}]");
             idMap = passway.TargetMap;
             target = new Point(passway.TargetX, passway.TargetY);
 

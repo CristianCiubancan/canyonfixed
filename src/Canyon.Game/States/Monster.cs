@@ -415,7 +415,32 @@ namespace Canyon.Game.States
                 await GameAction.ExecuteActionAsync(monsterType.Action, user, this, null, string.Empty);
             }
 
-            LuaScriptManager.Run(user, this, null, string.Empty, "LinkMonsterMain()");
+            // TODO: Use Lua Script for item drops
+            // LuaScriptManager.Run(user, this, null, string.Empty, "LinkMonsterMain()");
+
+            var multiplier = 200;
+
+            if (await ChanceCalcAsync(625, 54_000_000 / multiplier))
+            {
+                if (user != null && user.VipLevel >= 6 && user.UserPackage.InventoryCount < 40)
+                {
+                    // if the user already has 9 dragon balls we want to get rid of them and award a db scroll
+                    if (user.UserPackage.MultiCheckItem(Item.TYPE_DRAGONBALL, Item.TYPE_DRAGONBALL, 9, true))
+                    {
+                        await user.UserPackage.MultiSpendItemAsync(Item.TYPE_DRAGONBALL,Item.TYPE_DRAGONBALL, 9, true);
+                        await user.UserPackage.AwardItemAsync(Item.TYPE_DRAGONBALL_SCROLL);
+                    }
+                    else {
+                        await user.UserPackage.AwardItemAsync(Item.TYPE_DRAGONBALL);
+                    }
+                    // TODO: announce drop
+                }
+                else
+                {
+                    await DropItemAsync(Item.TYPE_DRAGONBALL, user, DropMode.Common);
+                    // TODO: announce drop
+                }
+            }
 
             if (IsPkKiller() || IsGuard() || IsEvilKiller() || IsDynaNpc() || attacker == null)
                 return;

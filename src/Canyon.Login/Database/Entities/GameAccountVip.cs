@@ -8,6 +8,7 @@ namespace Canyon.Login.Database.Entities
     {
         [Key]
         public virtual int Id { get; protected set; }
+        public virtual int GameAccountId { get; set; }
         public virtual int ConquerAccountId { get; set; }
         public virtual byte VipLevel { get; set; }
         public virtual uint DurationMinutes { get; set; }

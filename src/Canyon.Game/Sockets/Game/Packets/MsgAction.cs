@@ -388,6 +388,7 @@ namespace Canyon.Game.Sockets.Game.Packets
                         var tgtPos = new Point();
                         Point sourcePos;
                         bool result;
+                        logger.LogDebug($"MapPortal: {Command} {CommandX} {CommandY} {MapColor}");
                         if (Command == 0)
                         {
                             sourcePos = new Point(user.X, user.Y);
@@ -409,7 +410,6 @@ namespace Canyon.Game.Sockets.Game.Packets
                         {
                             await user.SavePositionAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
                         }
-
                         await user.FlyMapAsync(idMap, tgtPos.X, tgtPos.Y);
                         break;
                     }
