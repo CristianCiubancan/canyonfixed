@@ -39,7 +39,17 @@ namespace Canyon.Login.Sockets.Login.Packets
             {
                 Success = true
             };
-            GameAccount gameAccount = AccountRepository.GetByUsername(Username);
+            GameAccount gameAccount;
+            try
+            {
+                gameAccount = AccountRepository.GetByUsername(Username);
+            }
+            catch (Exception ex)
+            {
+                await client.DisconnectWithRejectionCodeAsync(MsgConnectEx<Client>.RejectionCode.ServerTimedOut);
+                logger.LogCritical(ex, "{}", ex.Message);
+                return;
+            }
             if (gameAccount != null)
             {
                 string password = DecryptPassword(Password, client.Seed);
