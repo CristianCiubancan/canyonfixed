@@ -37,12 +37,13 @@ namespace Canyon.Login.Sockets.Game.Packets
                 return;
             }
 #else
-            if (!realmData.GameIPAddress.Equals(client.IpAddress))
-            {
-                logger.LogWarning("[{}] realm IPAddress [{}] do not match target IPAddress [{}]", realmData.RealmName, client.IpAddress, realmData.GameIPAddress);
-                await DenyWithMessageAsync(client, MsgAccServerAuthEx.UNAUTHORIZED_IP_ADDRESS);
-                return;
-            }
+            // TODO: Investigate why this is needed
+            // if (!realmData.GameIPAddress.Equals(client.IpAddress))
+            // {
+            //     logger.LogWarning("[{}] realm IPAddress [{}] do not match target IPAddress [{}]", realmData.RealmName, client.IpAddress, realmData.GameIPAddress);
+            //     await DenyWithMessageAsync(client, MsgAccServerAuthEx.UNAUTHORIZED_IP_ADDRESS);
+            //     return;
+            // }
 #endif
 
             var oldRealm = RealmManager.GetRealm(realmData.RealmID);

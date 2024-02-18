@@ -9,8 +9,12 @@ namespace Canyon.Ai
 
         public ServerConfiguration(params string[] args)
         {
+            var configFile = Environment.GetEnvironmentVariable("MACHINE_ENV") == "docker" ? 
+                             "Canyon.Ai.Config.json" : 
+                             "Canyon.Ai.Config.local.json";
+
             new ConfigurationBuilder()
-                .AddJsonFile("Canyon.Ai.Config.json")
+                .AddJsonFile(configFile, optional: true) // Set optional to true if the file might not exist
                 .AddCommandLine(args)
                 .AddEnvironmentVariables()
                 .Build()

@@ -115,7 +115,9 @@ namespace Canyon.Login.Repositories
                 return false;
             }
             string encUsername = AesCipherHelper.Encrypt(AES_KEY, userName);
+            logger.LogDebug("Encrypted username: {}", encUsername);
             string encPassword = AesCipherHelper.Encrypt(AES_KEY, password);
+            logger.LogDebug("Encrypted password: {}", encPassword);
             return realm.Username.Equals(encUsername) && realm.Password.Equals(encPassword);
 #endif
         }

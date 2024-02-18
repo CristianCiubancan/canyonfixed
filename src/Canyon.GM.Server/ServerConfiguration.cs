@@ -7,13 +7,17 @@ namespace Canyon.GM.Server
     {
 
         public ServerConfiguration(params string[] args)
-        {
+        {   
+            var configFile = Environment.GetEnvironmentVariable("MACHINE_ENV") == "docker" ?
+                             "Canyon.GM.Config.json" :
+                             "Canyon.GM.Config.local.json";
+            
             new ConfigurationBuilder()
-             .AddJsonFile("Canyon.GM.Config.json")
-             .AddCommandLine(args)
-             .AddEnvironmentVariables()
-             .Build()
-             .Bind(this);
+            .AddJsonFile(configFile, optional: true) // Set optional to true if the file might not exist
+            .AddCommandLine(args)
+            .AddEnvironmentVariables()
+            .Build()
+            .Bind(this);
         }
 
         public Guid RealmID { get; set; } 

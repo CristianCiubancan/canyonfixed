@@ -1,17 +1,17 @@
 {
   "Database": {
-    "Hostname": "localhost",
+    "Hostname": "canyon-db",
     "Username": "root",
-    "Password": "password",
+    "Password": "970E95B5FFEEE",
     "Schema": "cq",
     "Port": 3306
   },
   "Ai": {
-    "ServerId": "03835b48-da5e-44fb-be9b-ebbf1a6d1351",
-    "Name": "Comet",
-    "IPAddress": "127.0.0.1",
+    "ServerId": "94390aa0-c75d-11ed-9586-0050560401e2",
+    "Name": "Dark",
+    "IPAddress": "172.21.0.4",
     "Port": 8650,
-    "Username": "yD3Ni6tMW1NNU1QH",
-    "Password": "jETqqIKi9LuFvOgu"
+    "Username": "qw3s3W2ERwWeA2sD",
+    "Password": "j2W2J3h2iWE6ERsA"
   }
 }

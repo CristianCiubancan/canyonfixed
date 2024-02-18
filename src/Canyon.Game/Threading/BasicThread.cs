@@ -65,34 +65,35 @@ namespace Canyon.Game.Threading
             }
 
 #if !DISABLE_GM_TOOLS
-            if (PigletClient.ConnectionStage == PigletClient.ConnectionState.Disconnected)
-            {
-                logger.LogInformation("Connecting to GM Server...");
-                PigletClient.Instance = new PigletClient();
+            // TODO: Re-enable GM Tools
+            // if (PigletClient.ConnectionStage == PigletClient.ConnectionState.Disconnected)
+            // {
+            //     logger.LogInformation("Connecting to GM Server...");
+            //     PigletClient.Instance = new PigletClient();
 
-                if (!await PigletClient.Instance.ConnectToAsync(ServerConfiguration.Configuration.Piglet.IPAddress, ServerConfiguration.Configuration.Piglet.Port))
-                {
-                    _ = PigletClient.Instance.StopAsync();
-                    PigletClient.Instance = null;
-                }
-                else
-                {
-                    pigletPing.Update();
-                }
-            }
-            else if (PigletClient.ConnectionStage == PigletClient.ConnectionState.Connected)
-            {
-                if (pigletPing.ToNextTime())
-                {
-                    await PigletClient.Instance.Actor.SendAsync(new MsgPigletPing
-                    {
-                        Data = new Network.Packets.Piglet.MsgPigletPing<PigletActor>.PingData
-                        {
-                            TickCount = Environment.TickCount64
-                        }
-                    });
-                }
-            }
+            //     if (!await PigletClient.Instance.ConnectToAsync(ServerConfiguration.Configuration.Piglet.IPAddress, ServerConfiguration.Configuration.Piglet.Port))
+            //     {
+            //         _ = PigletClient.Instance.StopAsync();
+            //         PigletClient.Instance = null;
+            //     }
+            //     else
+            //     {
+            //         pigletPing.Update();
+            //     }
+            // }
+            // else if (PigletClient.ConnectionStage == PigletClient.ConnectionState.Connected)
+            // {
+            //     if (pigletPing.ToNextTime())
+            //     {
+            //         await PigletClient.Instance.Actor.SendAsync(new MsgPigletPing
+            //         {
+            //             Data = new Network.Packets.Piglet.MsgPigletPing<PigletActor>.PingData
+            //             {
+            //                 TickCount = Environment.TickCount64
+            //             }
+            //         });
+            //     }
+            // }
 #endif
 
             await MaintenanceManager.OnTimerAsync();
