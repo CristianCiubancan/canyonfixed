@@ -91,6 +91,28 @@ services:
     command: ["dotnet", "./Canyon.Ai/Canyon.Ai.dll", "/Database:Hostname=canyon-db"]
     environment:
       - MACHINE_ENV=docker
+
+  auto-patcher-server:
+    container_name: canyon-auto-patcher
+    build: 
+      context: ./src/auto-patcher-server
+      dockerfile: Dockerfile  # This line is optional if your file is named Dockerfile
+    volumes:
+      - /src/auto-patcher-server/patches:/usr/src/auto-patcher-server/patches
+    networks:
+      frontend:
+        ipv4_address: 172.21.0.10  # Assign a specific IP address in the frontend network
+    ports:
+      - "1338:1338"  # Map the port to the host
+    depends_on:
+      - db
+      - account
+      - game
+      - ai
+    environment:
+      - NODE_ENV=production
+    command: ["node", "server.js"]  # Replace with your start command
+
   # gm:
   #   image: canyon/server
   #   build: 
