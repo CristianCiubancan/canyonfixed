@@ -98,7 +98,7 @@ services:
       context: ./src/auto-patcher-server
       dockerfile: Dockerfile  # This line is optional if your file is named Dockerfile
     volumes:
-      - /src/auto-patcher-server/patches:/usr/src/auto-patcher-server/patches
+    - ./src/auto-patcher-server/patches:/app/patches  # Corrected path
     networks:
       frontend:
         ipv4_address: 172.21.0.10  # Assign a specific IP address in the frontend network
