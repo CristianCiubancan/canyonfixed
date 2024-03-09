@@ -15,7 +15,7 @@ using Canyon.Shared.Threads;
 using Canyon.World;
 using System.Drawing;
 using System.Runtime.Caching;
-
+using Canyon.Game.States;
 namespace Canyon.Game
 {
     public class Kernel

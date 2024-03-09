@@ -20,11 +20,13 @@ namespace Canyon.Game.States
         public Achievements(Character user)
         {
             this.user = user;
+            InitializeAsync().ConfigureAwait(true);
         }
 
         public uint Points
         {
-            get => achievements.Point;
+            // TODO: check why achievements are empty and if they should be
+            get => achievements !=null ? achievements.Point : 0;
             set => achievements.Point = value;
         }
 
@@ -48,25 +50,29 @@ namespace Canyon.Game.States
             var result = IdToFlag(fullFlag);
             uint flag = 1u << result;
             int type = IdToType(fullFlag);
-            uint currFlag;
-            switch (type)
+            uint currFlag = 0;
+            // TODO: check why achievements are empty and if they should be
+            if(achievements != null)
             {
-                case 0: currFlag = achievements.Achieve1; break;
-                case 1: currFlag = achievements.Achieve2; break;
-                case 2: currFlag = achievements.Achieve3; break;
-                case 3: currFlag = achievements.Achieve4; break;
-                case 4: currFlag = achievements.Achieve5; break;
-                case 5: currFlag = achievements.Achieve6; break;
-                case 6: currFlag = achievements.Achieve7; break;
-                case 7: currFlag = achievements.Achieve8; break;
-                case 8: currFlag = achievements.Achieve9; break;
-                case 9: currFlag = achievements.Achieve10; break;
-                case 10: currFlag = achievements.Achieve11; break;
-                case 11: currFlag = achievements.Achieve12; break;
-                case 12: currFlag = achievements.Achieve13; break;
-                //case 13: currFlag = achievements.Achieve14; break;
-                default:
-                    return false;
+                switch (type)
+                {
+                    case 0: currFlag = achievements.Achieve1 ; break;
+                    case 1: currFlag = achievements.Achieve2; break;
+                    case 2: currFlag = achievements.Achieve3; break;
+                    case 3: currFlag = achievements.Achieve4; break;
+                    case 4: currFlag = achievements.Achieve5; break;
+                    case 5: currFlag = achievements.Achieve6; break;
+                    case 6: currFlag = achievements.Achieve7; break;
+                    case 7: currFlag = achievements.Achieve8; break;
+                    case 8: currFlag = achievements.Achieve9; break;
+                    case 9: currFlag = achievements.Achieve10; break;
+                    case 10: currFlag = achievements.Achieve11; break;
+                    case 11: currFlag = achievements.Achieve12; break;
+                    case 12: currFlag = achievements.Achieve13; break;
+                    //case 13: currFlag = achievements.Achieve14; break;
+                    default:
+                        return false;
+                }
             }
             return (currFlag & flag) != 0;
         }
@@ -77,25 +83,29 @@ namespace Canyon.Game.States
             uint flag = 1u << result;
             int type = IdToType(fullFlag);
 
-            uint currFlag;
-            switch (type)
+            uint currFlag = 0;
+            // TODO: check why achievements are empty and if they should be
+            if(achievements != null)
             {
-                case 0: currFlag = achievements.Achieve1; break;
-                case 1: currFlag = achievements.Achieve2; break;
-                case 2: currFlag = achievements.Achieve3; break;
-                case 3: currFlag = achievements.Achieve4; break;
-                case 4: currFlag = achievements.Achieve5; break;
-                case 5: currFlag = achievements.Achieve6; break;
-                case 6: currFlag = achievements.Achieve7; break;
-                case 7: currFlag = achievements.Achieve8; break;
-                case 8: currFlag = achievements.Achieve9; break;
-                case 9: currFlag = achievements.Achieve10; break;
-                case 10: currFlag = achievements.Achieve11; break;
-                case 11: currFlag = achievements.Achieve12; break;
-                case 12: currFlag = achievements.Achieve13; break;
-                //case 13: currFlag = achievements.Achieve14; break;
-                default:
-                    return false;
+                switch (type)
+                {
+                    case 0: currFlag = achievements.Achieve1; break;
+                    case 1: currFlag = achievements.Achieve2; break;
+                    case 2: currFlag = achievements.Achieve3; break;
+                    case 3: currFlag = achievements.Achieve4; break;
+                    case 4: currFlag = achievements.Achieve5; break;
+                    case 5: currFlag = achievements.Achieve6; break;
+                    case 6: currFlag = achievements.Achieve7; break;
+                    case 7: currFlag = achievements.Achieve8; break;
+                    case 8: currFlag = achievements.Achieve9; break;
+                    case 9: currFlag = achievements.Achieve10; break;
+                    case 10: currFlag = achievements.Achieve11; break;
+                    case 11: currFlag = achievements.Achieve12; break;
+                    case 12: currFlag = achievements.Achieve13; break;
+                    //case 13: currFlag = achievements.Achieve14; break;
+                    default:
+                        return false;
+                }
             }
 
             if ((currFlag & flag) != 0)
@@ -117,25 +127,30 @@ namespace Canyon.Game.States
             }
 
             gmLogger.LogInformation($"{user.Identity},{user.Name},{achievementType.Identity},{achievementType.Name},{achievementType.Point}");
-
-            switch (type)
+            
+            // TODO: check why achievements are empty and if they should be
+            if (achievements != null)
             {
-                case 0: achievements.Achieve1 |= flag; break;
-                case 1: achievements.Achieve2 |= flag; break;
-                case 2: achievements.Achieve3 |= flag; break;
-                case 3: achievements.Achieve4 |= flag; break;
-                case 4: achievements.Achieve5 |= flag; break;
-                case 5: achievements.Achieve6 |= flag; break;
-                case 6: achievements.Achieve7 |= flag; break;
-                case 7: achievements.Achieve8 |= flag; break;
-                case 8: achievements.Achieve9 |= flag; break;
-                case 9: achievements.Achieve10 |= flag; break;
-                case 10: achievements.Achieve11 |= flag; break;
-                case 11: achievements.Achieve12 |= flag; break;
-                case 12: achievements.Achieve13 |= flag; break;
-                //case 13: achievements.Achieve14 |= flag; break;
-                default:
-                    return false;
+                switch (type)
+                {
+                    case 0: achievements.Achieve1 |= flag; break;
+                    case 1: achievements.Achieve2 |= flag; break;
+                    case 2: achievements.Achieve3 |= flag; break;
+                    case 3: achievements.Achieve4 |= flag; break;
+                    case 4: achievements.Achieve5 |= flag; break;
+                    case 5: achievements.Achieve6 |= flag; break;
+                    case 6: achievements.Achieve7 |= flag; break;
+                    case 7: achievements.Achieve8 |= flag; break;
+                    case 8: achievements.Achieve9 |= flag; break;
+                    case 9: achievements.Achieve10 |= flag; break;
+                    case 10: achievements.Achieve11 |= flag; break;
+                    case 11: achievements.Achieve12 |= flag; break;
+                    case 12: achievements.Achieve13 |= flag; break;
+                    //case 13: achievements.Achieve14 |= flag; break;
+                    default:
+                        return false;
+                }
+
             }
 
             await SaveAsync();

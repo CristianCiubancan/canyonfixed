@@ -234,7 +234,7 @@ namespace Canyon.Game.Sockets.Game.Packets
                         }
 
                         Identity = user.Identity;
-
+                        await user.Achievements.InitializeAsync();
                         if (user.IsOfflineTraining)
                         {
                             user.MapIdentity = 601;
@@ -283,6 +283,11 @@ namespace Canyon.Game.Sockets.Game.Packets
                             if (user.Life == 0)
                             {
                                 await user.SetAttributesAsync(ClientUpdateType.Hitpoints, 10);
+                            }
+                            try {
+                                await user.SetAttributesAsync(ClientUpdateType.VipLevel, user.VipLevel);
+                            } catch (Exception ex) {
+                                logger.LogError(ex, "Error setting VIP level: {0}", ex.Message);
                             }
                         }
 
