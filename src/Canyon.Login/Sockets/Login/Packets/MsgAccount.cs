@@ -64,7 +64,14 @@ namespace Canyon.Login.Sockets.Login.Packets
                 response.IsPermanentlyBanned = false;
                 response.IsLocked = false;
 
-                GameAccountVip gameAccountVip = VipRepository.GetAccountVip((uint)gameAccount.Id);
+                GameAccountVip gameAccountVip;
+                try {
+                    gameAccountVip = VipRepository.GetAccountVip((uint)gameAccount.Id);
+                } catch (Exception ex) {
+                    await client.DisconnectWithRejectionCodeAsync(MsgConnectEx<Client>.RejectionCode.ServerTimedOut);
+                    logger.LogCritical(ex, "{}", ex.Message);
+                    return;
+                }
                 if (gameAccountVip != null)
                 {
                     response.VIPLevel = gameAccountVip.VipLevel;

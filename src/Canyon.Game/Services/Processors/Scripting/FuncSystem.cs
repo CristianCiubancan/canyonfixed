@@ -493,6 +493,15 @@ namespace Canyon.Game.Services.Processors.Scripting
         }
 
         [LuaFunction]
+        public bool IsUserNormalClient(int userId)
+        {
+            // TODO: add functionality
+            ILogger logger = LogFactory.CreateLogger<LuaProcessor>();
+            logger.LogInformation("TODO: Check if user is normal client");
+            return true;
+        }
+
+        [LuaFunction]
         public void SaveDebugLog(string text, params object[] args)
         {
             ILogger logger = LogFactory.CreateLogger<LuaProcessor>();
